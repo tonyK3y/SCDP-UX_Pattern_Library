@@ -1,0 +1,2577 @@
+// Comprehensive seed script for all SCDP UX Pattern Library content
+
+const patterns = [
+  {
+    title: 'Modal Usage',
+    slug: 'modal-usage',
+    description: 'Guidelines for implementing modal dialogs in supply chain workflows, including form modals, confirmation dialogs, and information displays.',
+    content: \`# Modal Usage Pattern
+
+## Overview
+Modals are dialog overlays that focus user attention on a specific task or piece of information. In supply chain management, modals are essential for complex forms, critical confirmations, and detailed data views.
+
+## When to Use
+Use modals for:
+- Creating new requisitions (multi-step forms)
+- Editing supplier details (contact info, payment terms)
+- Viewing invoice details (read-only, complex data)
+- Quick approval workflows
+- Confirming destructive actions
+- Displaying detailed purchase order information
+
+## Modal Types
+
+### Form Modals
+**Use for:** Creating or editing records that require focused attention
+
+**Example: Create Requisition**
+- Multi-step wizard for requisition creation
+- Clear progress indicators
+- Validation on each step
+- Ability to save as draft
+
+**Example: Edit Supplier**
+- Grouped fields (contact, payment, compliance)
+- Real-time validation
+- Clear save/cancel actions
+
+### Information Modals
+**Use for:** Displaying detailed, read-only information
+
+**Example: View Invoice Details**
+- Invoice header information
+- Line item breakdown
+- Payment history
+- Approval trail
+- Related documents
+
+### Confirmation Modals
+**Use for:** Critical actions requiring explicit confirmation
+
+**Example: Submit for Approval**
+- Clear summary of what will be submitted
+- List of approvers
+- Expected timeline
+- Final confirmation button
+
+## Size Guidelines
+
+### Small (sm)
+- Simple confirmations
+- Single field inputs
+- Quick actions
+- Max width: 400px
+
+### Medium (md) - Default
+- Standard forms (3-5 fields)
+- Basic data displays
+- Most common use case
+- Max width: 600px
+
+### Large (lg)
+- Complex forms (6-10 fields)
+- Detailed data tables
+- Multi-column layouts
+- Max width: 800px
+
+### Extra Large (xlg)
+- Multi-step wizards
+- Full data grids
+- Document previews
+- Max width: 1200px
+
+## Best Practices
+
+### Content
+1. **Keep it focused** - One primary action per modal
+2. **Be concise** - Avoid long paragraphs
+3. **Use clear labels** - Button text should be action-specific
+4. **Show consequences** - Explain what will happen
+
+### Layout
+1. **Header** - Clear title explaining the purpose
+2. **Body** - Focused content, scrollable if needed
+3. **Footer** - Primary and secondary actions
+
+### Buttons
+- **Primary action** - Right side, action-oriented (e.g., "Submit Purchase Order")
+- **Secondary action** - Left of primary (e.g., "Save as Draft")
+- **Cancel/Close** - Left side or X button
+
+## Supply Chain Examples
+
+### Create Purchase Order Modal
+\\`\\`\\`
+Title: Create Purchase Order
+Fields:
+- Supplier (searchable dropdown)
+- Delivery date
+- Requisition reference
+- Cost center
+- Payment terms
+- Notes
+
+Buttons:
+- "Create Purchase Order" (primary)
+- "Save as Draft" (secondary)
+- "Cancel"
+\\`\\`\\`
+
+### Approve Invoice Modal
+\\`\\`\\`
+Title: Approve Invoice INV-2024-0156
+Content:
+- Invoice amount: $45,230.00
+- Supplier: Acme Supplies Inc.
+- Related PO: PO-2024-0892
+- Due date: 2024-05-15
+- Your approval will route to: Finance Manager
+
+Buttons:
+- "Approve Invoice" (primary)
+- "Request Changes" (secondary)
+- "Cancel"
+\\`\\`\\`
+
+### Quick Add Supplier Contact
+\\`\\`\\`
+Size: Small
+Title: Add Contact
+Fields:
+- Name
+- Email
+- Phone
+- Role
+
+Buttons:
+- "Add Contact" (primary)
+- "Cancel"
+\\`\\`\\`
+
+## Accessibility
+- **Focus management** - Focus moves to modal on open, returns on close
+- **Keyboard navigation** - Tab through focusable elements, ESC to close
+- **Screen readers** - Use role="dialog" and aria-labelledby
+- **Scrolling** - Body scrolls, header/footer remain fixed
+
+## Mobile Considerations
+- Full-screen on mobile devices
+- Large touch targets (min 44x44px)
+- Avoid nested modals
+- Consider bottom sheets for simple actions
+
+## Don'ts
+- ❌ Don't nest modals (modal within modal)
+- ❌ Don't auto-close without user action
+- ❌ Don't use for non-critical information
+- ❌ Don't make the only way to complete a task
+- ❌ Don't use generic labels like "OK" or "Submit"
+
+## Related Patterns
+- Destructive Actions
+- Form Validation
+- Flyouts
+- Drawers\`
+  },
+  {
+    title: 'Flyouts',
+    slug: 'flyouts',
+    description: 'Guidelines for implementing flyouts, tooltips, and popovers in supply chain interfaces to provide contextual information without disrupting workflow.',
+    content: \`# Flyouts Pattern
+
+## Overview
+Flyouts are small, contextual overlays that provide additional information or quick actions without navigating away from the current page. They're essential for maintaining workflow efficiency in complex supply chain interfaces.
+
+## Flyout Types
+
+### Tooltips
+**Use for:** Brief, supplementary information
+
+**Examples:**
+- Status badge explanations
+- Icon descriptions
+- Field help text
+- Truncated text expansion
+
+**Characteristics:**
+- Appear on hover (desktop) or tap (mobile)
+- Dismiss on mouse-out or tap outside
+- Max 1-2 sentences
+- No interactive elements
+
+### Popovers
+**Use for:** Richer content with possible interactions
+
+**Examples:**
+- Supplier quick info card
+- PO line item details
+- User profile preview
+- Quick filters
+
+**Characteristics:**
+- Appear on click/tap
+- Can contain interactive elements
+- Dismissed by clicking outside or close button
+- May include links or buttons
+
+### Definition Tooltips
+**Use for:** Term definitions and explanations
+
+**Examples:**
+- "Net 30" payment term explanation
+- "FOB" shipping term definition
+- "Three-way match" process description
+
+## Supply Chain Use Cases
+
+### Supplier Quick Info
+**Trigger:** Hover/click on supplier name
+**Content:**
+- Supplier ID
+- Primary contact
+- Payment terms
+- Active contracts count
+- Performance rating
+- Quick action: "View Full Profile"
+
+### PO Line Item Details
+**Trigger:** Click on line item number
+**Content:**
+- Item description
+- Quantity and unit price
+- Delivery date
+- Receiving status
+- Related requisition
+- Quick actions: "Edit", "Receive"
+
+### Approval History
+**Trigger:** Click on approval status badge
+**Content:**
+- Approval timeline
+- Approver names and dates
+- Comments from each approver
+- Current step in workflow
+
+### Status Explanations
+**Trigger:** Hover on status icon
+**Content:**
+- Current status meaning
+- Expected next action
+- Who is responsible
+- Estimated completion time
+
+## Positioning
+
+### Priority Order (if space conflicts)
+1. **Top** - Preferred for most cases
+2. **Bottom** - Good alternative
+3. **Right** - For left-aligned triggers
+4. **Left** - For right-aligned triggers
+
+### Smart Positioning
+- Auto-adjust to stay within viewport
+- Flip if not enough space
+- Consider scrollable containers
+
+## Timing
+
+### Tooltips
+- **Appear:** 300ms hover delay
+- **Disappear:** Immediate on mouse-out
+
+### Popovers
+- **Appear:** Immediate on click
+- **Disappear:** On outside click or ESC
+
+## Content Guidelines
+
+### Do
+- Keep content scannable
+- Use bullet points
+- Highlight key information
+- Provide clear actions
+- Use consistent formatting
+
+### Don't
+- Don't overload with information
+- Don't use for critical workflows
+- Don't nest flyouts
+- Don't use for long-form content
+- Don't auto-dismiss while user is interacting
+
+## Interaction Patterns
+
+### Hover-based (Desktop)
+\\`\\`\\`
+Supplier Name [hover icon]
+  ↓ hover
+┌─────────────────────┐
+│ Acme Supplies Inc.  │
+│ ID: SUP-12345      │
+│ Rating: ⭐⭐⭐⭐⭐    │
+│ Active POs: 12     │
+└─────────────────────┘
+\\`\\`\\`
+
+### Click-based (All devices)
+\\`\\`\\`
+[Status: Pending] ← click
+  ↓
+┌─────────────────────────┐
+│ Pending Approval        │
+│ ─────────────────────  │
+│ Waiting for:           │
+│ • Finance Manager      │
+│                        │
+│ Next step:             │
+│ • Approve or Reject    │
+│                        │
+│ [View Details →]       │
+└─────────────────────────┘
+\\`\\`\\`
+
+## Accessibility
+- **Keyboard navigation** - Access via Tab, dismiss with ESC
+- **Screen readers** - Use aria-describedby for tooltips
+- **Focus management** - Don't trap focus in non-modal flyouts
+- **High contrast** - Ensure visible borders
+- **Announce changes** - Use aria-live for dynamic content
+
+## Mobile Considerations
+- Larger touch targets (44x44px minimum)
+- Full-width on small screens
+- Bottom sheets for complex popovers
+- Avoid hover-only interactions
+- Clear close mechanisms
+
+## Performance
+- Lazy-load flyout content when possible
+- Limit number of active flyouts
+- Debounce hover events
+- Cache frequently accessed content
+
+## Related Patterns
+- Modals
+- Drawers
+- Tooltips
+- Contextual Help\`
+  },
+  {
+    title: 'Drawers',
+    slug: 'drawers',
+    description: 'Guidelines for implementing side drawers and panels for filtering, bulk actions, and supplementary content in supply chain applications.',
+    content: \`# Drawers Pattern
+
+## Overview
+Drawers are slide-in panels that provide additional functionality or content without navigating away from the current page. They're ideal for filters, bulk operations, and contextual tools in supply chain interfaces.
+
+## Drawer vs Modal
+
+### Use Drawers When:
+- User needs to reference main content while interacting
+- Filtering or refining a list/table
+- Performing bulk actions on selected items
+- Viewing supplementary information
+- Multi-tasking workflows
+
+### Use Modals When:
+- Task requires full user attention
+- Creating or editing primary records
+- Critical confirmations
+- Workflow must be completed before continuing
+
+## Drawer Types
+
+### Filter Drawer
+**Use for:** Complex filtering of data tables and lists
+
+**Example: Filter Purchase Orders**
+\\`\\`\\`
+┌────────────────────────┐
+│ Filters               │
+│ ──────────────────── │
+│ Date Range           │
+│ [Start] to [End]     │
+│                      │
+│ Status               │
+│ ☑ Pending            │
+│ ☐ Approved           │
+│ ☑ In Progress        │
+│ ☐ Completed          │
+│                      │
+│ Supplier             │
+│ [Search suppliers...] │
+│                      │
+│ Amount Range         │
+│ $[Min] - $[Max]      │
+│                      │
+│ Cost Center          │
+│ [Select...]          │
+│                      │
+│ [Clear All] [Apply]  │
+└────────────────────────┘
+\\`\\`\\`
+
+### Bulk Action Drawer
+**Use for:** Performing actions on multiple selected items
+
+**Example: Bulk Edit Invoice Items**
+\\`\\`\\`
+┌────────────────────────┐
+│ Bulk Actions          │
+│ 12 items selected     │
+│ ──────────────────── │
+│ Update Status        │
+│ [Select status...]   │
+│                      │
+│ Assign To            │
+│ [Select user...]     │
+│                      │
+│ Add Tag              │
+│ [Select tags...]     │
+│                      │
+│ Notes                │
+│ [Enter notes...]     │
+│                      │
+│ [Cancel] [Apply]     │
+└────────────────────────┘
+\\`\\`\\`
+
+### Activity Feed Drawer
+**Use for:** Persistent access to notifications and activity
+
+**Example: Recent Activity**
+- Purchase order updates
+- Approval notifications
+- System alerts
+- Supplier messages
+- Invoice status changes
+
+### Details Panel
+**Use for:** Showing detailed information about a selected item
+
+**Example: PO Line Item Details**
+- Item specifications
+- Pricing breakdown
+- Delivery information
+- Related documents
+- Receiving history
+
+## Positioning
+
+### Side Drawer (Most Common)
+- **Right side** - Primary pattern, doesn't obscure navigation
+- **Left side** - Alternative for right-to-left layouts
+
+### Bottom Drawer
+- **Mobile-first** - Natural gesture on mobile devices
+- **Quick actions** - Simple selections or filters
+
+## Size Options
+
+### Narrow (320px)
+- Simple filters
+- Basic info panels
+- Quick actions
+
+### Medium (480px) - Default
+- Standard filter sets
+- Activity feeds
+- Most common use case
+
+### Wide (640px)
+- Detailed information
+- Complex forms
+- Data comparisons
+
+### Extra Wide (800px+)
+- Split views
+- Side-by-side comparisons
+- Rich content
+
+## Behavior
+
+### Opening
+- Smooth slide-in animation (250ms)
+- Overlay dims main content
+- Focus moves to drawer
+
+### Closing
+- Click overlay
+- ESC key
+- Close button
+- Complete action
+
+### Scrolling
+- Drawer content scrolls independently
+- Header remains fixed
+- Footer remains fixed (if present)
+
+## Supply Chain Examples
+
+### Filter Purchase Orders
+\\`\\`\\`
+Filters:
+- Date range picker
+- Status checkboxes (Draft, Pending, Approved, Completed)
+- Supplier multi-select
+- Amount range slider
+- Cost center dropdown
+- Created by user filter
+- Tags filter
+
+Actions:
+- "Clear All Filters"
+- "Apply Filters"
+- "Save Filter Set"
+\\`\\`\\`
+
+### Bulk Approve Invoices
+\\`\\`\\`
+Title: Approve 15 Invoices
+Total Amount: $234,567.89
+
+Options:
+- Add approval note
+- Set payment priority
+- Assign to payment batch
+- Add tags
+
+Buttons:
+- "Approve All"
+- "Cancel"
+\\`\\`\\`
+
+### Invoice Activity Feed
+\\`\\`\\`
+Persistent drawer showing:
+- New invoices received
+- Approvals pending
+- Payment confirmations
+- Exception alerts
+- Supplier messages
+
+Each item:
+- Timestamp
+- Description
+- Quick action button
+- Link to details
+\\`\\`\\`
+
+### Supplier Information Panel
+\\`\\`\\`
+Triggered by: Selecting supplier in list
+
+Content:
+- Supplier details
+- Contact information
+- Active contracts
+- Recent purchase orders
+- Performance metrics
+- Payment history
+
+Actions:
+- "Edit Supplier"
+- "View Full Profile"
+- "New Purchase Order"
+\\`\\`\\`
+
+## Responsive Behavior
+
+### Desktop (>1024px)
+- Side drawer slides in from right
+- Main content remains visible (pushed or overlaid)
+- Drawer width: 320-640px
+
+### Tablet (768-1024px)
+- Side drawer at reduced width
+- Main content overlay mode
+- Drawer width: 320-480px
+
+### Mobile (<768px)
+- Full-width drawer or bottom sheet
+- Smooth slide-up animation
+- Swipe down to dismiss
+
+## Accessibility
+- **Keyboard navigation** - Tab through controls, ESC to close
+- **Focus management** - Trap focus within drawer
+- **Screen readers** - role="dialog", aria-labelledby
+- **Close mechanism** - Multiple ways to dismiss
+- **Scroll locking** - Prevent body scroll when open
+
+## Performance
+- Lazy-load drawer content
+- Debounce filter inputs
+- Virtualize long lists
+- Cache filter settings
+
+## Best Practices
+
+### Do
+✅ Keep filters organized and grouped
+✅ Show applied filter count
+✅ Provide clear "Clear All" option
+✅ Auto-save filter preferences
+✅ Show loading states
+
+### Don't
+❌ Don't nest drawers
+❌ Don't use for critical workflows
+❌ Don't make too wide (blocks main content)
+❌ Don't forget mobile experience
+❌ Don't auto-close while user is interacting
+
+## Animation
+- **Open:** Slide in from edge (250ms ease-out)
+- **Close:** Slide out to edge (200ms ease-in)
+- **Overlay:** Fade in/out (200ms)
+
+## Related Patterns
+- Modals
+- Flyouts
+- Data Tables
+- Filters
+- Bulk Actions\`
+  },
+  {
+    title: 'Forms',
+    slug: 'forms',
+    description: 'Best practices for form design, validation, and error handling in supply chain data entry workflows.',
+    content: \`# Forms Pattern
+
+## Overview
+Forms are the primary method for data entry in supply chain systems. Well-designed forms reduce errors, improve efficiency, and ensure data quality for critical business operations.
+
+## Form Types
+
+### Creation Forms
+**Use for:** Creating new records
+
+**Examples:**
+- New Purchase Requisition
+- Add Supplier
+- Create Invoice
+- New Contract
+
+**Characteristics:**
+- All required fields prominently marked
+- Smart defaults where possible
+- Progressive disclosure for advanced options
+- Save as draft capability
+
+### Edit Forms
+**Use for:** Modifying existing records
+
+**Examples:**
+- Edit PO line items
+- Update supplier details
+- Modify invoice terms
+- Change delivery address
+
+**Characteristics:**
+- Show current values
+- Highlight changes
+- Track edit history
+- Confirmation before saving
+
+### Search/Filter Forms
+**Use for:** Querying and filtering data
+
+**Examples:**
+- Advanced PO search
+- Invoice filters
+- Supplier lookup
+- Report parameters
+
+**Characteristics:**
+- Optional fields
+- Clear/reset functionality
+- Save search capability
+- Validation only on submit
+
+## Field Types
+
+### Text Input
+**Use for:** Short text entries
+- PO numbers
+- Supplier names
+- Contact names
+- Reference numbers
+
+### Text Area
+**Use for:** Long-form text
+- Notes and comments
+- Descriptions
+- Specifications
+- Terms and conditions
+
+### Dropdown/Select
+**Use for:** Predefined options
+- Status values
+- Payment terms
+- Shipping methods
+- Cost centers
+
+### Date Picker
+**Use for:** Date selection
+- Delivery dates
+- Invoice dates
+- Contract start/end
+- Payment due dates
+
+### Number Input
+**Use for:** Numeric values
+- Quantities
+- Prices
+- Discounts
+- Tax rates
+
+### Checkbox
+**Use for:** Boolean options
+- Urgent flag
+- Include tax
+- Auto-approve
+- Email notification
+
+### Radio Button
+**Use for:** Mutually exclusive options (3-5 options)
+- Shipping priority (Standard/Express/Overnight)
+- Invoice type (Goods/Services/Credit Note)
+- Approval status (Approved/Rejected/Pending)
+
+### Multi-select
+**Use for:** Multiple selections from list
+- Cost centers
+- Tags
+- Approvers
+- Categories
+
+## Validation
+
+### Inline Validation
+**When:** As user types or moves to next field
+
+**Examples:**
+- Email format
+- Required fields
+- Value ranges
+- Date logic
+
+**Behavior:**
+- Show error below field
+- Red border on invalid
+- Green checkmark on valid
+- Clear, specific message
+
+### On-Submit Validation
+**When:** User attempts to submit form
+
+**Examples:**
+- Cross-field validation
+- Business rule checks
+- Duplicate detection
+- Authorization verification
+
+**Behavior:**
+- Show summary of errors at top
+- Scroll to first error
+- Highlight invalid fields
+- Keep user input
+
+## Error Messages
+
+### Be Specific
+❌ "Invalid input"
+✅ "PO number must be 10 digits starting with 'PO'"
+
+❌ "Required"
+✅ "Supplier name is required to create a purchase order"
+
+❌ "Error"
+✅ "Delivery date must be at least 3 business days from today"
+
+### Be Helpful
+- Explain what's wrong
+- Suggest how to fix it
+- Provide examples if needed
+- Link to help documentation
+
+### Examples
+
+\\`\\`\\`
+❌ "Date invalid"
+✅ "Delivery date (05/32/2024) is not a valid date. Use format MM/DD/YYYY."
+
+❌ "Amount error"
+✅ "Invoice amount ($0.00) must be greater than zero."
+
+❌ "Not authorized"
+✅ "You don't have permission to approve POs over $10,000. Contact your manager."
+\\`\\`\\`
+
+## Supply Chain Form Examples
+
+### Create Purchase Requisition
+\\`\\`\\`
+Required Fields:
+- Requisition title *
+- Delivery date *
+- Cost center *
+- Requestor (auto-filled)
+
+Line Items:
+- Item description *
+- Quantity *
+- Estimated unit price *
+- Account code *
+- [Add Item]
+
+Optional:
+- Preferred supplier
+- Special instructions
+- Attachments
+- Urgency flag
+
+Buttons:
+- "Submit for Approval" (primary)
+- "Save as Draft"
+- "Cancel"
+\\`\\`\\`
+
+### Edit Supplier Information
+\\`\\`\\`
+Basic Information:
+- Supplier name *
+- Supplier ID (read-only)
+- Tax ID *
+- Category *
+
+Contact:
+- Primary contact name *
+- Email *
+- Phone *
+- Address *
+
+Payment Terms:
+- Payment method *
+- Payment terms * (Net 30, Net 60, etc.)
+- Currency *
+- Bank details
+
+Compliance:
+- Insurance expiry
+- W-9 on file
+- Vendor agreement signed
+- [Upload documents]
+
+Buttons:
+- "Save Changes"
+- "Cancel"
+\\`\\`\\`
+
+### Quick Add Invoice Line Item
+\\`\\`\\`
+Modal Form:
+
+- PO reference * [Search...]
+- Item description *
+- Quantity * [___] Unit: [Each ▾]
+- Unit price * [$____.__]
+- Total (calculated): $__,___.__
+- Tax applicable ☐
+- Account code * [Search...]
+- Notes
+
+Buttons:
+- "Add Line Item"
+- "Add & New" (add and create another)
+- "Cancel"
+\\`\\`\\`
+
+## Layout Patterns
+
+### Single Column (Preferred)
+- Easiest to scan
+- Natural reading order
+- Best for mobile
+- Use for most forms
+
+### Two Column
+- Group related fields
+- Use for wide screens only
+- Keep logical groupings
+- Avoid for required fields side-by-side
+
+### Multi-Step
+- Complex forms (>10 fields)
+- Logical sections
+- Progress indicator
+- Save between steps
+
+## Field Organization
+
+### Grouping
+Group related fields:
+- Supplier Information
+- Delivery Details
+- Payment Terms
+- Approval Workflow
+
+### Ordering
+1. Most important first
+2. Logical sequence
+3. Group related fields
+4. Optional fields last
+
+## Best Practices
+
+### Labels
+✅ Above field (not beside)
+✅ Clear, concise wording
+✅ No colons needed
+✅ Question format for clarity
+
+### Required Fields
+✅ Mark with asterisk (*)
+✅ Explain at top: "* Required field"
+✅ Validate before submit
+✅ Keep to minimum necessary
+
+### Help Text
+✅ Below field, smaller font
+✅ Provide examples
+✅ Explain business rules
+✅ Link to documentation
+
+### Placeholders
+✅ Use for format examples
+✅ Don't use instead of labels
+✅ Keep short and clear
+✅ Example: "MM/DD/YYYY"
+
+### Buttons
+✅ Primary action on right
+✅ Action-specific text
+✅ Show loading states
+✅ Disable on submit
+
+## Progressive Disclosure
+
+### Show More Pattern
+\\`\\`\\`
+Basic Fields:
+- PO number
+- Supplier
+- Amount
+- Date
+
+[Show Advanced Options ▾]
+  → Shipping details
+  → Special instructions
+  → Custom fields
+  → Attachments
+\\`\\`\\`
+
+### Conditional Fields
+\\`\\`\\`
+Shipping Method: [Express ▾]
+  ↓ (if Express selected)
+  Express Service: [Next Day ▾]
+  Saturday Delivery: ☐
+\\`\\`\\`
+
+## Mobile Considerations
+- Single column layout
+- Large touch targets (44x44px)
+- Native input types (email, tel, number)
+- Minimize typing with dropdowns
+- Show numeric keyboard for amounts
+- Save progress automatically
+
+## Accessibility
+- **Labels** - Associated with inputs (for/id)
+- **Error messages** - aria-describedby
+- **Required** - aria-required="true"
+- **Invalid** - aria-invalid="true"
+- **Groups** - fieldset and legend
+- **Keyboard** - Tab order logical, Enter submits
+
+## Related Patterns
+- Modals
+- Validation
+- Error States
+- Loading States
+- Data Tables\`
+  },
+  {
+    title: 'Data Tables',
+    slug: 'data-tables',
+    description: 'Guidelines for displaying, sorting, filtering, and interacting with tabular supply chain data including purchase orders, invoices, and supplier lists.',
+    content: \`# Data Tables Pattern
+
+## Overview
+Data tables are essential for displaying and managing large sets of structured supply chain data. Well-designed tables enable users to quickly scan, sort, filter, and act on critical business information.
+
+## Table Types
+
+### Basic Table
+**Use for:** Simple data display, no interaction needed
+- Delivery schedules
+- Price lists
+- Static reports
+
+### Interactive Table
+**Use for:** Sortable, filterable data
+- Purchase order lists
+- Invoice queues
+- Supplier directories
+
+### Editable Table
+**Use for:** Inline data entry
+- PO line items
+- Invoice line items
+- Budget allocations
+
+### Selectable Table
+**Use for:** Bulk actions on multiple rows
+- Bulk approve invoices
+- Mass update status
+- Export selected items
+
+## Core Components
+
+### Table Header
+- Column labels
+- Sort indicators
+- Filter access
+- Column actions
+
+### Table Body
+- Data rows
+- Row actions
+- Inline editing
+- Expansion panels
+
+### Table Footer
+- Pagination
+- Row count
+- Bulk actions
+- Export options
+
+## Column Types
+
+### Text Column
+- Supplier names
+- PO numbers
+- Descriptions
+- Reference IDs
+
+### Number Column
+- Right-aligned
+- Formatted with commas
+- Currency symbol
+- Quantity values
+
+### Date Column
+- Consistent format
+- Relative dates option ("2 days ago")
+- Sort by chronological order
+
+### Status Column
+- Color-coded badges
+- Icon indicators
+- Tooltip explanations
+
+### Actions Column
+- Row-specific actions
+- Edit, delete, view
+- Fixed right position
+- Dropdown for multiple actions
+
+## Sorting
+
+### Single Column Sort
+- Click header to sort
+- Arrow indicator (↑↓)
+- Toggle ascending/descending
+- Default: Most relevant first
+
+### Multi-Column Sort
+- Hold Shift + click
+- Show sort order numbers
+- Clear all sorts option
+
+### Supply Chain Examples
+\\`\\`\\`
+Purchase Orders Table:
+- Default sort: Date (newest first)
+- Common sorts: Amount, Status, Supplier
+
+Invoice Table:
+- Default sort: Due date (soonest first)
+- Common sorts: Amount, Date received, Status
+
+Supplier Table:
+- Default sort: Name (A-Z)
+- Common sorts: Rating, Active POs, Last activity
+\\`\\`\\`
+
+## Filtering
+
+### Column Filters
+- Click filter icon in header
+- Inline filter inputs
+- Apply immediately
+- Show active filter count
+
+### Global Search
+- Searches all text columns
+- Highlight matches
+- Clear with X button
+- Debounced input
+
+### Advanced Filters
+- Multiple criteria
+- Date ranges
+- Amount ranges
+- Status combinations
+- Save filter sets
+
+### Filter Panel Example
+\\`\\`\\`
+Purchase Orders Filters:
+┌──────────────────────┐
+│ Status              │
+│ ☑ Pending           │
+│ ☑ Approved          │
+│ ☐ Completed         │
+│                     │
+│ Date Range          │
+│ [From] to [To]      │
+│                     │
+│ Amount              │
+│ $[Min] - $[Max]     │
+│                     │
+│ Supplier            │
+│ [Search...]         │
+│                     │
+│ [Clear] [Apply]     │
+└──────────────────────┘
+\\`\\`\\`
+
+## Pagination
+
+### Standard Pagination
+- Rows per page: 10, 25, 50, 100
+- Page numbers with ellipsis
+- Previous/Next buttons
+- "Go to page" input
+
+### Infinite Scroll
+- Load more on scroll
+- Show loading indicator
+- Keep position on back
+- Best for mobile
+
+### Load More Button
+- "Load 25 more rows"
+- Total count visible
+- Clear loading state
+- Combine with pagination
+
+## Row Actions
+
+### Primary Action
+- Click row to view details
+- Hover effect
+- Pointer cursor
+- Keyboard accessible
+
+### Action Menu
+\\`\\`\\`
+[⋮] → Edit
+     View Details
+     Duplicate
+     ─────────
+     Delete
+\\`\\`\\`
+
+### Inline Actions
+- Icon buttons
+- Edit, delete, download
+- Tooltip labels
+- Right-aligned
+
+## Selection
+
+### Checkbox Selection
+- Header checkbox: Select all (page)
+- Row checkboxes: Individual selection
+- Shift+click: Range selection
+- Show selection count
+
+### Bulk Actions Bar
+\\`\\`\\`
+[✓] 12 items selected
+[Change Status ▾] [Assign To ▾] [Export] [Delete]
+                                        [Clear Selection]
+\\`\\`\\`
+
+## Expandable Rows
+
+### Use For
+- Additional details
+- Nested data
+- Related records
+- Action history
+
+### Pattern
+\\`\\`\\`
+[▶] PO-2024-0156  Acme Supplies  $5,234.00  Approved
+    ↓ (click to expand)
+[▼] PO-2024-0156  Acme Supplies  $5,234.00  Approved
+    ┌──────────────────────────────────────────┐
+    │ Line Items:                             │
+    │ 1. Widget A      × 100    $2,500.00    │
+    │ 2. Gadget B      × 50     $2,734.00    │
+    │                                         │
+    │ Delivery: 2024-05-15                   │
+    │ Approved by: Jane Smith                │
+    └──────────────────────────────────────────┘
+\\`\\`\\`
+
+## Supply Chain Table Examples
+
+### Purchase Orders Table
+\\`\\`\\`
+Columns:
+- [Checkbox] PO Number
+- Supplier
+- Date
+- Amount
+- Status
+- Delivery Date
+- Actions
+
+Features:
+- Sort by any column
+- Filter by status, date range, supplier
+- Bulk approve selected
+- Export to CSV
+- Expandable rows show line items
+\\`\\`\\`
+
+### Invoice Queue Table
+\\`\\`\\`
+Columns:
+- [Checkbox] Invoice #
+- Supplier
+- Amount
+- Due Date
+- Status
+- Related PO
+- Actions
+
+Features:
+- Default sort: Due date (soonest)
+- Overdue rows highlighted
+- Quick approve button
+- Filter by status
+- Bulk payment processing
+\\`\\`\\`
+
+### Supplier Directory
+\\`\\`\\`
+Columns:
+- Supplier Name
+- Category
+- Rating (★★★★★)
+- Active POs
+- Total Spend
+- Last Activity
+- Actions
+
+Features:
+- Sort by rating, spend
+- Search by name
+- Filter by category
+- Export supplier list
+- Quick contact button
+\\`\\`\\`
+
+### Requisition Line Items (Editable)
+\\`\\`\\`
+Columns:
+- [#] Description
+- Quantity
+- Unit Price
+- Total
+- Account Code
+- [Delete]
+
+Features:
+- Inline editing (click cell)
+- Add new row
+- Drag to reorder
+- Auto-calculate totals
+- Duplicate row
+\\`\\`\\`
+
+## Empty States
+
+### No Data
+\\`\\`\\`
+┌──────────────────────────┐
+│                          │
+│      [📄 Icon]           │
+│                          │
+│   No purchase orders yet │
+│                          │
+│  [Create Purchase Order] │
+│                          │
+└──────────────────────────┘
+\\`\\`\\`
+
+### No Search Results
+\\`\\`\\`
+No results for "acme supplies"
+
+Try:
+- Checking spelling
+- Using fewer keywords
+- Removing filters
+\\`\\`\\`
+
+### No Filtered Results
+\\`\\`\\`
+No purchase orders match your filters
+
+[Clear Filters]
+\\`\\`\\`
+
+## Loading States
+
+### Initial Load
+- Skeleton rows (3-5)
+- Pulsing animation
+- Maintain layout
+
+### Infinite Scroll
+- Spinner at bottom
+- "Loading more..."
+- Smooth append
+
+### Filter/Sort
+- Overlay with spinner
+- Maintain table structure
+- Quick transition
+
+## Responsive Behavior
+
+### Desktop (>1024px)
+- All columns visible
+- Horizontal scroll if needed
+- Fixed header option
+- Side-by-side comparisons
+
+### Tablet (768-1024px)
+- Hide less important columns
+- Column selector
+- Horizontal scroll
+- Touch-friendly actions
+
+### Mobile (<768px)
+- Card-based layout
+- Stack key information
+- Swipe for actions
+- Simplified filters
+- Bottom sheet menus
+
+### Mobile Card Example
+\\`\\`\\`
+┌────────────────────────┐
+│ PO-2024-0156          │
+│ Acme Supplies Inc.     │
+│ ──────────────────── │
+│ Amount: $5,234.00     │
+│ Date: Apr 15, 2024    │
+│ Status: [Approved]    │
+│                       │
+│ [View Details]  [⋮]  │
+└────────────────────────┘
+\\`\\`\\`
+
+## Accessibility
+
+### Keyboard Navigation
+- Tab through interactive elements
+- Arrow keys for cells
+- Space to select checkboxes
+- Enter to activate actions
+
+### Screen Readers
+- Table semantics (table, th, td)
+- Sort status announced
+- Row count announced
+- Selection announced
+
+### ARIA Labels
+- aria-sort for sorted columns
+- aria-selected for selected rows
+- aria-label for icon buttons
+- role="grid" for editable tables
+
+## Performance
+
+### Optimization
+- Virtualize long lists (>100 rows)
+- Lazy load images
+- Debounce search/filter
+- Cache sorted/filtered results
+
+### Best Practices
+- Load data on demand
+- Progressive enhancement
+- Skeleton screens
+- Optimistic updates
+
+## Common Patterns
+
+### Sticky Header
+- Header stays visible on scroll
+- Important for long tables
+- Show table title
+- Include key filters
+
+### Column Resizing
+- Drag column border
+- Double-click to auto-fit
+- Remember user preferences
+- Min/max widths
+
+### Column Reordering
+- Drag and drop columns
+- Save layout preference
+- Reset to default option
+
+### Density Options
+- Compact (more rows, less spacing)
+- Normal (default)
+- Comfortable (more spacing)
+
+## Related Patterns
+- Filters
+- Drawers
+- Pagination
+- Empty States
+- Loading States\`
+  }
+];
+
+const guidanceContent = [
+  {
+    title: 'Language & Tone - Overview',
+    slug: 'language-tone-overview',
+    description: 'Voice, personality, and writing principles for SCDP supply chain interfaces.',
+    content: \`# Language & Tone Guidelines
+
+## Voice & Personality
+
+### Professional Expert
+The SCDP voice is that of a **trusted procurement expert** - professional, knowledgeable, and efficient. We speak as a colleague who understands the complexities of supply chain management.
+
+**We are:**
+- Professional and businesslike
+- Clear and action-oriented
+- Knowledgeable about procurement
+- Focused on efficiency
+- Helpful and guiding
+
+**We are not:**
+- Conversational or casual
+- Playful or humorous
+- Overly technical or jargony
+- Vague or ambiguous
+- Apologetic or uncertain
+
+## Writing Principles
+
+### 1. Be Clear
+Use plain, straightforward language that leaves no room for misinterpretation.
+
+❌ "There might be an issue with the submission"
+✅ "This purchase order cannot be submitted without approval"
+
+❌ "Consider reviewing your entries"
+✅ "Check the quantity in line item 3"
+
+### 2. Be Specific
+Provide exact information, not generic statements.
+
+❌ "Some items are missing"
+✅ "3 required fields are empty: Supplier, Delivery Date, Cost Center"
+
+❌ "The amount is wrong"
+✅ "Invoice amount ($1,234.56) doesn't match PO amount ($1,250.00)"
+
+### 3. Be Action-Oriented
+Tell users what to do, not just what's wrong.
+
+❌ "Invalid date"
+✅ "Enter a delivery date that's at least 3 business days from today"
+
+❌ "Cannot proceed"
+✅ "Add at least one line item to create this purchase order"
+
+### 4. Be Consistent
+Use the same terms consistently throughout the application.
+
+**Standardized Terms:**
+- Purchase Order (not PO, Requisition, or Request)
+- Supplier (not Vendor)
+- Line Item (not Item, Product, or Entry)
+- Approve (not Accept or OK)
+- Delete (not Remove for permanent deletion)
+
+### 5. Focus on User Goals
+Frame messages around what users want to accomplish.
+
+❌ "The system cannot process this request"
+✅ "To submit this requisition, add a cost center"
+
+❌ "Unauthorized action"
+✅ "You need approval authority to sign off on purchases over $10,000"\`
+  },
+  {
+    title: 'Language & Tone - Microcopy',
+    slug: 'language-tone-microcopy',
+    description: 'Guidelines for buttons, labels, messages, and other interface text.',
+    content: \`# Microcopy Guidelines
+
+## Button Labels
+
+### Be Specific and Action-Oriented
+Buttons should clearly state what will happen when clicked.
+
+**Do:**
+- "Submit Purchase Order"
+- "Approve Invoice"
+- "Add Line Item"
+- "Export to CSV"
+- "Save as Draft"
+
+**Don't:**
+- "Submit"
+- "OK"
+- "Yes"
+- "Proceed"
+- "Continue"
+
+### Primary Actions
+The most important action should have the clearest label.
+
+✅ "Create Purchase Order"
+✅ "Submit for Approval"
+✅ "Confirm Payment"
+✅ "Finalize Invoice"
+
+### Secondary Actions
+Alternative actions should still be clear.
+
+✅ "Save as Draft"
+✅ "Download PDF"
+✅ "View Details"
+✅ "Cancel"
+
+### Destructive Actions
+Make consequences clear.
+
+✅ "Delete Purchase Order"
+✅ "Cancel Invoice"
+✅ "Remove Supplier"
+✅ "Revoke Approval"
+
+Not: "Delete", "Remove", "Discard"
+
+## Field Labels
+
+### Clear and Concise
+Labels should immediately communicate what data is expected.
+
+**Do:**
+- "Delivery Date"
+- "Supplier Name"
+- "Invoice Amount"
+- "Cost Center"
+
+**Don't:**
+- "Date" (which date?)
+- "Name" (whose name?)
+- "Amount" (which amount?)
+- "Center"
+
+### No Colons Needed
+Modern design doesn't require colons after labels.
+
+✅ Delivery Date
+❌ Delivery Date:
+
+### Question Format for Clarity
+When appropriate, frame as a question.
+
+✅ "Is this urgent?"
+✅ "Include tax?"
+✅ "Send notification?"
+
+## Error Messages
+
+### Structure
+1. What's wrong
+2. Why it's wrong (if not obvious)
+3. How to fix it
+
+### Examples
+
+❌ "Error"
+✅ "Delivery date must be in the future"
+
+❌ "Invalid"
+✅ "PO number must be 10 digits (e.g., 1234567890)"
+
+❌ "Required field"
+✅ "Supplier name is required to create a purchase order"
+
+❌ "Cannot save"
+✅ "Add at least one line item before saving this purchase order"
+
+## Success Messages
+
+### Confirm the Action
+Let users know their action completed successfully.
+
+✅ "Purchase order PO-2024-0156 created"
+✅ "Invoice INV-2024-0892 approved"
+✅ "15 items exported to suppliers.csv"
+✅ "Changes saved"
+
+### Be Specific
+Include relevant details like IDs or counts.
+
+❌ "Saved"
+✅ "Draft purchase order saved. Continue editing or submit for approval."
+
+## Confirmation Dialogs
+
+### State What Will Happen
+Be explicit about the consequences.
+
+**Delete Purchase Order:**
+\\`\\`\\`
+Delete Purchase Order #12345?
+
+This purchase order has 5 line items totaling $3,456.78.
+This action cannot be undone.
+
+[Cancel] [Delete Purchase Order]
+\\`\\`\\`
+
+**Cancel Invoice:**
+\\`\\`\\`
+Cancel Invoice INV-2024-0156?
+
+This will:
+• Mark the invoice as cancelled
+• Notify the supplier
+• Remove from payment queue
+
+This cannot be undone.
+
+[Keep Invoice] [Cancel Invoice]
+\\`\\`\\`
+
+## Empty States
+
+### Be Helpful
+Guide users on what to do next.
+
+**No Purchase Orders:**
+\\`\\`\\`
+No purchase orders yet
+
+Create your first purchase order to start managing procurement.
+
+[Create Purchase Order]
+\\`\\`\\`
+
+**No Search Results:**
+\\`\\`\\`
+No suppliers found for "acme"
+
+Try:
+• Checking your spelling
+• Using fewer keywords
+• Browsing all suppliers
+
+[Clear Search] [Browse Suppliers]
+\\`\\`\\`
+
+**No Items Selected:**
+\\`\\`\\`
+Select items to perform bulk actions
+
+Check the boxes next to items, then choose an action from the toolbar.
+\\`\\`\\`
+
+## Help Text
+
+### Provide Context and Examples
+Help text should explain business rules and provide examples.
+
+**Field: PO Number**
+\\`\\`\\`
+Enter the 10-digit purchase order number (e.g., 1234567890)
+\\`\\`\\`
+
+**Field: Payment Terms**
+\\`\\`\\`
+When payment is due after invoice date. Common terms:
+• Net 30: Due in 30 days
+• Net 60: Due in 60 days
+• Due on receipt: Immediate payment
+\\`\\`\\`
+
+**Field: Three-Way Match**
+\\`\\`\\`
+Verify that purchase order, receipt, and invoice match before payment
+\\`\\`\\`
+
+## Placeholder Text
+
+### Show Format Examples
+Placeholders demonstrate expected format.
+
+✅ "MM/DD/YYYY"
+✅ "Search suppliers..."
+✅ "e.g., Office Supplies"
+✅ "$0.00"
+
+### Don't Replace Labels
+Placeholders supplement labels, never replace them.
+
+❌ [____________]
+   ↑ no label, only placeholder "Enter supplier name"
+
+✅ Supplier Name
+   [Search suppliers...]
+
+## Loading States
+
+### Be Informative
+Tell users what's happening.
+
+✅ "Loading purchase orders..."
+✅ "Submitting for approval..."
+✅ "Exporting 156 invoices..."
+✅ "Calculating totals..."
+
+### Long Operations
+For operations that take time, be more specific.
+
+✅ "Generating report... This may take up to 2 minutes"
+✅ "Processing 1,234 line items... 45% complete"
+
+## Notifications
+
+### Action Notifications
+\\`\\`\\`
+✅ Invoice INV-2024-0892 approved
+   Payment scheduled for 2024-05-15
+
+⚠ Purchase Order PO-2024-0156 requires your approval
+   Amount: $15,234.00 | Supplier: Acme Supplies
+   [Review Purchase Order]
+
+❌ Failed to submit requisition
+   Your cost center code is invalid. Contact your manager.
+\\`\\`\\`
+
+## Status Indicators
+
+### Use Clear, Standard Labels
+
+**Purchase Order Status:**
+- Draft
+- Pending Approval
+- Approved
+- In Progress
+- Completed
+- Cancelled
+
+**Invoice Status:**
+- Received
+- Under Review
+- Approved for Payment
+- Paid
+- Overdue
+- Disputed
+
+**Payment Status:**
+- Scheduled
+- Processing
+- Paid
+- Failed
+- Cancelled
+
+## Tooltips
+
+### Supplement, Don't Replace
+Tooltips add detail, not critical information.
+
+**Icon [?]:**
+Tooltip: "Three-way match verifies that the PO, receipt, and invoice all match before payment is processed"
+
+**Status Badge "Pending":**
+Tooltip: "Waiting for approval from Finance Manager"
+
+## Real-World Examples
+
+### Creating a Purchase Order
+\\`\\`\\`
+Title: "Create Purchase Order"
+
+Required field indicators: "* Required field"
+
+Fields:
+- Supplier Name *
+  [Search suppliers...]
+  Help: "Start typing to search registered suppliers"
+
+- Delivery Date *
+  [MM/DD/YYYY]
+  Help: "Must be at least 3 business days from today"
+
+- Cost Center *
+  [Select cost center...]
+  Help: "Your default: Operations - Seattle (OP-SEA-001)"
+
+Empty line items:
+"Add line items to this purchase order
+Each line item requires a description, quantity, and price."
+
+[Add Line Item]
+
+Buttons:
+[Cancel] [Save as Draft] [Submit for Approval]
+\\`\\`\\`
+
+### Approving an Invoice
+\\`\\`\\`
+Title: "Approve Invoice INV-2024-0156"
+
+Summary:
+Supplier: Acme Supplies Inc.
+Amount: $5,234.00
+Related PO: PO-2024-0892
+Due Date: 2024-05-30
+
+Approval Note (Optional):
+[Add note about this approval...]
+
+Your approval will:
+• Route invoice to Finance Manager for payment
+• Schedule payment for 2024-05-27 (Net 30)
+• Notify supplier of approval
+
+[Cancel] [Request Changes] [Approve Invoice]
+\\`\\`\\`\`
+  },
+  {
+    title: 'Language & Tone - Terminology',
+    slug: 'language-tone-terminology',
+    description: 'Standard terminology dictionary for supply chain and procurement.',
+    content: \`# SCDP Terminology Guide
+
+## Standard Terms
+
+### Purchase Order (PO)
+**Use:** Purchase Order
+**Don't use:** PO, Requisition, Request, Order
+
+**Definition:** A commercial document issued by a buyer to a seller indicating types, quantities, and agreed prices for products or services.
+
+**In UI:** "Create Purchase Order", "View Purchase Order", "PO-2024-0156" (for IDs only)
+
+### Requisition
+**Use:** Requisition
+**Don't use:** Req, Request, Purchase Request
+
+**Definition:** An internal document requesting the purchase of goods or services, typically requiring approval before becoming a purchase order.
+
+**In UI:** "Submit Requisition", "Requisition REQ-2024-0234"
+
+### Supplier
+**Use:** Supplier
+**Don't use:** Vendor, Provider, Seller
+
+**Definition:** An entity that provides goods or services to the organization.
+
+**In UI:** "Search Suppliers", "Supplier Details", "Add New Supplier"
+
+### Invoice
+**Use:** Invoice
+**Don't use:** Bill, Billing, Receipt
+
+**Definition:** A document sent by a supplier requesting payment for goods or services provided.
+
+**In UI:** "Process Invoice", "Invoice Queue", "INV-2024-0892"
+
+### Line Item
+**Use:** Line Item
+**Don't use:** Item, Product, Entry, Row
+
+**Definition:** An individual entry on a purchase order or invoice representing a specific product or service.
+
+**In UI:** "Add Line Item", "Edit Line Item", "5 line items"
+
+### Approval
+**Use:** Approval, Approve
+**Don't use:** Accept, OK, Sign-off (use as alternative only)
+
+**Definition:** Authorization to proceed with a purchase, payment, or other action.
+
+**In UI:** "Pending Approval", "Approve Invoice", "Approval Workflow"
+
+### Delete vs Remove vs Cancel
+
+**Delete:**
+Use for: Permanent removal of data
+"Delete Purchase Order" (removes entirely)
+
+**Remove:**
+Use for: Taking something out of a list or relationship
+"Remove Line Item" (from PO)
+"Remove Supplier Contact" (from list)
+
+**Cancel:**
+Use for: Voiding a transaction or process
+"Cancel Invoice" (marks as cancelled, not deleted)
+"Cancel Approval" (reverses approval)
+
+## Financial Terms
+
+### Payment Terms
+**Use:** Payment Terms
+**Examples:**
+- Net 30: Payment due in 30 days
+- Net 60: Payment due in 60 days
+- Due on Receipt: Immediate payment
+- 2/10 Net 30: 2% discount if paid within 10 days, otherwise due in 30
+
+### Cost Center
+**Use:** Cost Center
+**Don't use:** Cost Code, Department Code, GL Code
+
+**Definition:** An organizational unit used for tracking expenses.
+
+### Account Code
+**Use:** Account Code
+**Don't use:** GL Code, Accounting Code
+
+**Definition:** A code used to categorize expenses in the general ledger.
+
+### Three-Way Match
+**Use:** Three-Way Match
+**Definition:** Verification that the purchase order, receipt, and invoice all match before processing payment.
+
+## Workflow Terms
+
+### Submit
+**Use:** Submit
+**Context:** Sending something for review or approval
+**Examples:** "Submit Requisition", "Submit for Approval"
+
+### Approve vs Reject
+**Approve:** Authorization to proceed
+**Reject:** Denial of request
+**Don't use:** Accept/Decline, Yes/No
+
+### Revoke
+**Use:** Revoke
+**Context:** Withdrawing a previously granted approval
+**Example:** "Revoke Approval"
+
+### Route
+**Use:** Route (verb)
+**Context:** Sending through an approval workflow
+**Example:** "Invoice will route to Finance Manager"
+
+## Status Terms
+
+### Purchase Order Status
+- **Draft** - Being created, not yet submitted
+- **Pending Approval** - Submitted, waiting for approval
+- **Approved** - Authorized, ready to send
+- **Sent to Supplier** - Transmitted to supplier
+- **Acknowledged** - Supplier confirmed receipt
+- **In Progress** - Items being prepared/shipped
+- **Partially Received** - Some items received
+- **Received** - All items received
+- **Completed** - Fully processed and closed
+- **Cancelled** - Voided, no longer active
+
+### Invoice Status
+- **Received** - Invoice arrived
+- **Under Review** - Being validated
+- **Pending Approval** - Waiting for authorization
+- **Approved for Payment** - Authorized, in payment queue
+- **Scheduled** - Payment date set
+- **Paid** - Payment processed
+- **Overdue** - Past due date
+- **Disputed** - Issues requiring resolution
+- **Cancelled** - Voided
+
+### Payment Status
+- **Scheduled** - Queued for payment
+- **Processing** - Payment being executed
+- **Paid** - Successfully completed
+- **Failed** - Payment unsuccessful
+- **Cancelled** - Payment stopped
+- **Refunded** - Payment returned
+
+## Shipping Terms
+
+### Delivery vs Shipping
+**Delivery:** Final arrival at destination
+**Shipping:** Transportation process
+
+**Use:**
+- "Delivery Date"
+- "Shipping Method"
+- "Delivered" (arrived)
+- "Shipped" (sent)
+
+### Receiving
+**Use:** Receiving, Receive
+**Definition:** Physical acceptance of goods
+
+**In UI:** "Receive Items", "Receiving History", "Goods Received"
+
+### FOB (Free on Board)
+**Use:** FOB, spell out on first use
+**Definition:** Shipping term indicating when ownership transfers
+
+**Examples:**
+- FOB Origin: Buyer pays shipping, owns goods once shipped
+- FOB Destination: Seller pays shipping, buyer owns upon delivery
+
+## Common Acronyms
+
+### When to Spell Out
+**First use:** Spell out with acronym in parentheses
+**Subsequent uses:** Use acronym
+
+**Example:**
+"Purchase Order (PO)" → later: "PO-2024-0156"
+
+### Standard Acronyms
+- **PO** - Purchase Order (in IDs only)
+- **RFQ** - Request for Quotation
+- **RFP** - Request for Proposal
+- **FOB** - Free on Board
+- **ETA** - Estimated Time of Arrival
+- **SKU** - Stock Keeping Unit
+
+### Always Spell Out
+- Requisition (not REQ in prose)
+- Invoice (not INV in prose)
+- Supplier (no acronym)
+
+## Contract Terms
+
+### Contract vs Agreement
+**Contract:** Formal, legally binding document
+**Agreement:** Can be less formal
+
+**Use:** "Supplier Contract", "Master Service Agreement"
+
+### Statement of Work (SOW)
+**Use:** Statement of Work (SOW)
+**Definition:** Document defining project deliverables and timeline
+
+### Master Service Agreement (MSA)
+**Use:** Master Service Agreement (MSA)
+**Definition:** Overarching contract governing future transactions
+
+## Quantity Terms
+
+### Unit of Measure
+**Use:** Unit, Unit of Measure
+**Examples:** Each, Box, Case, Dozen, Pound, Kilogram, Liter
+
+**In UI:**
+- "100 Each"
+- "50 Boxes"
+- "25 Pounds"
+
+### Quantity vs Amount
+**Quantity:** Number of units (countable)
+**Amount:** Value in currency
+
+**Use:**
+- "Quantity: 50 units"
+- "Amount: $1,250.00"
+
+## Time-Related Terms
+
+### Business Days
+**Use:** Business Days (not "working days")
+**Definition:** Monday-Friday, excluding holidays
+
+**Example:** "Delivery in 3 business days"
+
+### Due Date vs Delivery Date
+**Due Date:** When payment is required
+**Delivery Date:** When goods should arrive
+
+### Lead Time
+**Use:** Lead Time
+**Definition:** Time between order and delivery
+
+**Example:** "Supplier lead time: 14 days"
+
+## Quality Terms
+
+### Compliance
+**Use:** Compliance
+**Examples:**
+- "Supplier Compliance Documents"
+- "Regulatory Compliance"
+- "Compliance Certificate"
+
+### Specification
+**Use:** Specification, Spec (informal)
+**Definition:** Detailed description of requirements
+
+### Quality Assurance vs Quality Control
+**QA:** Process-focused, prevents defects
+**QC:** Product-focused, detects defects
+
+## Action Words
+
+### Primary Actions
+- **Create** - Make something new
+- **Edit** - Modify existing
+- **Delete** - Permanently remove
+- **Submit** - Send for review
+- **Approve** - Authorize
+- **Reject** - Deny
+- **Cancel** - Void transaction
+- **Export** - Download data
+- **Import** - Upload data
+- **Duplicate** - Copy existing
+
+### Secondary Actions
+- **View** - Look at details
+- **Search** - Find specific items
+- **Filter** - Narrow results
+- **Sort** - Reorder list
+- **Print** - Generate hard copy
+- **Download** - Save file
+- **Share** - Send to others
+
+## Formatting Standards
+
+### IDs and Reference Numbers
+Format: \`[PREFIX]-[YEAR]-[NUMBER]\`
+
+**Examples:**
+- \`PO-2024-0156\`
+- \`INV-2024-0892\`
+- \`REQ-2024-0234\`
+- \`SUP-12345\`
+
+### Currency
+**Format:** \`$#,###.##\`
+
+**Examples:**
+- $1,250.00
+- $15,234.56
+- $1,234,567.89
+
+**Don't use:**
+- $1250 (missing decimals)
+- 1,250.00 (missing currency symbol)
+- USD 1,250 (unless multi-currency)
+
+### Dates
+**Primary format:** MM/DD/YYYY
+**Alternative:** "April 15, 2024" (in prose)
+**Relative:** "2 days ago", "Yesterday", "In 3 days"
+
+**Examples:**
+- 04/15/2024
+- April 15, 2024
+- Due in 5 days
+
+### Percentages
+**Format:** \`##%\` or \`##.#%\`
+
+**Examples:**
+- 5% discount
+- 2.5% tax rate
+- 15% complete\`
+  },
+  {
+    title: 'Getting Started - Overview',
+    slug: 'getting-started-overview',
+    description: 'Introduction to SCDP design principles and supply chain UX philosophy.',
+    content: \`# Getting Started with SCDP Pattern Library
+
+## Welcome
+
+The **Coupa Supply Chain Design Platform (SCDP) UX Pattern Library** is your comprehensive guide to designing and building consistent, accessible, and efficient supply chain interfaces.
+
+## What is SCDP?
+
+SCDP is the design system for Coupa's enterprise supply chain management applications. It provides:
+
+- **Design patterns** for common supply chain workflows
+- **Component guidelines** using IBM Carbon Design System
+- **Content standards** for clear, professional communication
+- **Accessibility requirements** for inclusive experiences
+- **Best practices** from real-world procurement operations
+
+## Who Should Use This?
+
+### Designers
+- Create mockups and prototypes
+- Ensure consistency across features
+- Design new patterns for review
+- Conduct usability testing
+
+### Developers
+- Implement interfaces correctly
+- Reference component usage
+- Follow coding standards
+- Build accessible experiences
+
+### Product Managers
+- Define requirements
+- Review designs
+- Ensure user needs are met
+- Maintain product consistency
+
+### Content Writers
+- Write clear microcopy
+- Follow terminology standards
+- Create helpful error messages
+- Maintain voice and tone
+
+## Core Principles
+
+### 1. Efficiency First
+Supply chain operations are time-sensitive. Every interface should:
+- Minimize clicks and keystrokes
+- Provide keyboard shortcuts
+- Enable bulk operations
+- Remember user preferences
+- Auto-save work in progress
+
+### 2. Accuracy Matters
+Errors in procurement can be costly. Every interface should:
+- Validate input immediately
+- Prevent invalid states
+- Confirm destructive actions
+- Show clear error messages
+- Provide audit trails
+
+### 3. Clarity Over Cleverness
+Users need to understand exactly what will happen. Every interface should:
+- Use plain, specific language
+- Show consequences clearly
+- Provide context and help
+- Maintain consistency
+- Avoid jargon
+
+### 4. Trust Through Transparency
+Users must trust the system. Every interface should:
+- Show system status
+- Explain what's happening
+- Indicate who took actions
+- Provide clear next steps
+- Never hide information
+
+### 5. Design for Experts
+SCDP users are procurement professionals. Every interface should:
+- Respect their expertise
+- Support advanced workflows
+- Provide powerful features
+- Enable customization
+- Scale with complexity
+
+## Design Philosophy
+
+### Progressive Disclosure
+Start simple, reveal complexity as needed.
+
+**Example: Purchase Order Creation**
+\\`\\`\\`
+Basic View:
+- Supplier
+- Delivery Date
+- Line Items
+
+[Show Advanced Options ▾]
+  → Shipping Instructions
+  → Payment Terms
+  → Custom Fields
+  → Approval Routing
+\\`\\`\\`
+
+### Sensible Defaults
+Reduce cognitive load with smart defaults.
+
+**Examples:**
+- Default to user's cost center
+- Pre-fill today's date where appropriate
+- Remember last-used suppliers
+- Default to most common payment terms
+
+### Contextual Help
+Provide help exactly when and where it's needed.
+
+**Examples:**
+- Inline field help text
+- Tooltips on complex terms
+- Examples in placeholders
+- Links to documentation
+
+### Feedback & Confirmation
+Always let users know what happened.
+
+**Examples:**
+- "Purchase Order PO-2024-0156 created"
+- Progress indicators for long operations
+- Confirmation before destructive actions
+- Clear error messages with solutions
+
+## Supply Chain Context
+
+### Understanding the Domain
+
+**Key Workflows:**
+1. **Requisition to PO** - Request → Approval → Purchase Order
+2. **PO to Receipt** - Order → Delivery → Receiving
+3. **Invoice to Payment** - Invoice → Matching → Approval → Payment
+4. **Supplier Management** - Onboard → Evaluate → Maintain
+
+**Critical Considerations:**
+- **Compliance** - Regulatory requirements
+- **Approval Chains** - Multi-level authorization
+- **Audit Trails** - Complete history tracking
+- **Financial Impact** - Every action has cost implications
+- **Supplier Relationships** - External stakeholder management
+
+### Common User Scenarios
+
+**Procurement Manager:**
+- Creates 20-50 purchase orders per day
+- Needs speed and efficiency
+- Manages multiple suppliers
+- Tracks spending against budget
+
+**Accounts Payable Specialist:**
+- Processes 100+ invoices daily
+- Matches invoices to POs and receipts
+- Handles exceptions and disputes
+- Ensures timely payment
+
+**Approver:**
+- Reviews requisitions and invoices
+- Makes quick decisions
+- Needs complete context
+- May approve on mobile
+
+**Supplier:**
+- Submits invoices
+- Checks order status
+- Updates delivery information
+- Responds to inquiries
+
+## IBM Carbon Integration
+
+SCDP is built on the **IBM Carbon Design System**. We use Carbon because:
+
+- **Enterprise-ready** - Designed for complex business applications
+- **Accessible** - WCAG 2.1 AA compliant
+- **Comprehensive** - Complete component library
+- **Well-documented** - Extensive usage guidelines
+- **Actively maintained** - Regular updates and improvements
+
+### Using Carbon Components
+
+**Do:**
+- ✅ Use Carbon components as designed
+- ✅ Follow Carbon spacing and typography
+- ✅ Use Carbon color tokens
+- ✅ Follow Carbon accessibility patterns
+- ✅ Customize through theming
+
+**Don't:**
+- ❌ Modify Carbon components internally
+- ❌ Create custom variants unnecessarily
+- ❌ Ignore Carbon accessibility features
+- ❌ Use non-Carbon colors
+- ❌ Break Carbon layout grid
+
+## Getting Started Checklist
+
+### For Designers
+- [ ] Review design principles
+- [ ] Study core patterns (Modals, Forms, Tables)
+- [ ] Understand terminology standards
+- [ ] Install Carbon Design Kit (Figma)
+- [ ] Review language and tone guidelines
+- [ ] Study supply chain workflows
+- [ ] Join design review meetings
+
+### For Developers
+- [ ] Set up IBM Carbon React
+- [ ] Review component usage patterns
+- [ ] Understand accessibility requirements
+- [ ] Study form validation patterns
+- [ ] Review API integration patterns
+- [ ] Set up testing environment
+- [ ] Join technical architecture reviews
+
+### For Product Managers
+- [ ] Understand core design principles
+- [ ] Review existing patterns before proposing new ones
+- [ ] Understand terminology standards
+- [ ] Study user workflows and scenarios
+- [ ] Review accessibility requirements
+- [ ] Join product design reviews
+
+## Resources
+
+### Design Tools
+- IBM Carbon Design Kit (Figma)
+- IBM Plex Typography
+- IBM Carbon Icons
+- IBM Carbon Pictograms
+
+### Development
+- @carbon/react (React components)
+- @carbon/icons-react (Icon library)
+- IBM Carbon documentation
+- SCDP component examples
+
+### Research & Validation
+- User testing templates
+- Accessibility checklist
+- Usability heuristics
+- Pattern validation criteria
+
+## Contributing
+
+### Proposing New Patterns
+1. Check if existing pattern can be adapted
+2. Document use cases and requirements
+3. Create prototype or mockup
+4. Validate with users
+5. Submit for design review
+6. Iterate based on feedback
+7. Document approved pattern
+
+### Updating Existing Patterns
+1. Document proposed changes
+2. Explain rationale
+3. Show before/after comparison
+4. Assess impact on existing implementations
+5. Submit for review
+6. Update documentation
+
+## Support
+
+### Questions?
+- Design questions → #design-system-help
+- Development questions → #scdp-dev-support
+- Content questions → #content-guidelines
+
+### Feedback
+- Pattern suggestions → design-system@coupa.com
+- Bug reports → Use issue tracker
+- General feedback → scdp-feedback@coupa.com
+
+## Next Steps
+
+1. **Explore Patterns** → Review core patterns like Modals, Forms, and Tables
+2. **Study Examples** → See real-world implementations
+3. **Learn Terminology** → Master supply chain vocabulary
+4. **Practice** → Build a sample feature using these patterns
+5. **Contribute** → Share your learnings and improvements
+
+Welcome to SCDP! Let's build better supply chain experiences together.\`
+  }
+];
+
+async function seedContent() {
+  try {
+    console.log('🌱 Starting SCDP content seed...\n')
+
+    // Seed patterns
+    console.log('📋 Creating patterns...')
+    for (const pattern of patterns) {
+      const response = await fetch('http://localhost:3000/api/patterns', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(pattern),
+      })
+
+      if (!response.ok) {
+        const error = await response.json()
+        console.error(\`❌ Failed to create pattern: ${pattern.title}\`)
+        console.error(JSON.stringify(error, null, 2))
+        continue
+      }
+
+      const result = await response.json()
+      console.log(\`   ✅ ${pattern.title} (ID: ${result.doc.id})\`)
+    }
+
+    // Seed guidance content
+    console.log('\n📚 Creating guidance content...')
+    for (const guide of guidanceContent) {
+      const response = await fetch('http://localhost:3000/api/patterns', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(guide),
+      })
+
+      if (!response.ok) {
+        const error = await response.json()
+        console.error(\`❌ Failed to create guide: ${guide.title}\`)
+        console.error(JSON.stringify(error, null, 2))
+        continue
+      }
+
+      const result = await response.json()
+      console.log(\`   ✅ ${guide.title} (ID: ${result.doc.id})\`)
+    }
+
+    console.log('\n✨ Seed complete!')
+    console.log('\n📊 Summary:')
+    console.log(\`   • ${patterns.length} patterns created\`)
+    console.log(\`   • ${guidanceContent.length} guidance documents created\`)
+    console.log(\`   • Total: ${patterns.length + guidanceContent.length} content items\`)
+    console.log('\n🎉 All content successfully added to CMS!')
+    console.log('   Visit http://localhost:3000/admin-custom to manage content\n')
+
+  } catch (error) {
+    console.error('❌ Seed failed:', error)
+    process.exit(1)
+  }
+}
+
+seedContent()
