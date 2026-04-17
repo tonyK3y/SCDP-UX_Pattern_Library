@@ -180,7 +180,7 @@ Home / Dashboard
 - `PRD.md` - Full project requirements document
 - `CoreCoupaVars.json` - Coupa design tokens (colors, spacing, typography)
 - `CLAUDE.md` - This file (running project context)
-- `README.md` - Project setup and documentation (to be created)
+- `README.md` - Project setup and documentation ✅
 
 ## Design Token Integration
 
@@ -255,21 +255,25 @@ npm run lint
 
 ## Next Session Priorities
 
-### Immediate Tasks (Quick Wins)
-1. **Resources Section** (#11) - Create `/resources` page with:
-   - Links to IBM Carbon library
-   - Links to icon/pictogram libraries
-   - Figma links (placeholders)
-   - GitHub repository links (placeholders)
-   - Tools & utilities section
+### Immediate Tasks (Quick Wins) ✅ COMPLETE
+1. **Resources Section** (#11) - ✅ COMPLETE
+   - Created comprehensive `/resources` page with Carbon Tiles
+   - Added links to IBM Carbon components, icons, and pictograms
+   - Linked to GitHub repositories (SCDP and Carbon)
+   - Included Carbon Design Kit (Figma) resources
+   - Added developer tools section (Carbon DevTools, Payload admin)
+   - Organized with proper sections and external resource links
 
-2. **Project README** (#9) - Write comprehensive README with:
-   - Project overview and purpose
-   - Tech stack details
-   - Setup instructions (`npm install`, `npm run dev`)
-   - How to add content via admin
-   - Note about NO Tailwind CSS
-   - Contributing guidelines
+2. **Project README** (#9) - ✅ COMPLETE
+   - Comprehensive project overview and key features
+   - Detailed tech stack with critical constraints (NO Tailwind CSS)
+   - Step-by-step installation and setup instructions
+   - Project structure documentation
+   - Content management guide with admin panel instructions
+   - Development workflow and styling guidelines
+   - Supply chain terminology reference
+   - Deployment instructions for Vercel and internal hosting
+   - Contributing guidelines and comprehensive FAQ section
 
 ### Major Features (Phase 2)
 3. **Rich Content Blocks System** (#18-20) - Design and implement:
@@ -291,9 +295,9 @@ npm run lint
 6. **Code Snippet Copy** (#8) - Add copy-to-clipboard to code examples
 
 ### Known Issues
-- Payload CMS 3.80-3.82.1 has CodeEditor bug with Next.js 16 (workaround in place)
-- CMS pages render plain markdown (blocks system will enhance this)
-- No git remote configured yet (local repo only)
+- Payload CMS 3.80-3.82.1 has CodeEditor bug with Next.js 16 (workaround in place with custom admin)
+- CMS pages render plain markdown (blocks system will enhance this - Phase 2)
+- CoreCoupaVars.json not yet integrated with Carbon theming (Phase 2)
 
 ### URLs to Remember
 - Local dev: http://localhost:3000
@@ -307,8 +311,8 @@ npm run lint
 
 ---
 
-**Last Updated:** 2026-04-16 (End of Session)
-**Current Phase:** Phase 1 Complete ✅ - Moving to Phase 2
-**Status:** MVP functional with 10 content resources in CMS, all pages working
-**Git:** Repository initialized, comprehensive first commit created
-**Next:** Resources section, README, then rich content blocks system
+**Last Updated:** 2026-04-17 (Session 2)
+**Current Phase:** Phase 2 - Foundation Enhancement
+**Status:** MVP functional + Resources page + Comprehensive README
+**Git:** Successfully pushed to https://github.com/tonyK3y/SCDP-UX_Pattern_Library
+**Next:** Rich content blocks system, CoreCoupaVars integration
