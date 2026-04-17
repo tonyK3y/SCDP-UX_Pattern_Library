@@ -3,7 +3,9 @@
 import { useState, useEffect, use } from 'react'
 import { Grid, Column, Breadcrumb, BreadcrumbItem, Loading } from '@carbon/react'
 import { Document } from '@carbon/icons-react'
+import * as CarbonIcons from '@carbon/icons-react'
 import ReactMarkdown from 'react-markdown'
+import BlockRenderer from '@/components/blocks/BlockRenderer'
 
 export default function LanguageDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = use(params)
@@ -66,6 +68,18 @@ export default function LanguageDetailPage({ params }: { params: Promise<{ slug:
     )
   }
 
+  // Get the icon component dynamically if icon name is provided
+  const getIcon = (iconName?: string) => {
+    if (!iconName) return <Document size={48} />
+    const IconComponent = (CarbonIcons as any)[iconName]
+    if (!IconComponent) return <Document size={48} />
+    return <IconComponent size={48} />
+  }
+
+  // Check if guide has blocks or legacy content
+  const hasBlocks = guide.blocks && guide.blocks.length > 0
+  const hasContent = guide.content
+
   return (
     <Grid className="page-container content-page">
       <Column lg={16} md={8} sm={4}>
@@ -76,7 +90,7 @@ export default function LanguageDetailPage({ params }: { params: Promise<{ slug:
         </Breadcrumb>
 
         <div className="page-header">
-          <Document size={48} />
+          {getIcon(guide.icon)}
           <h1>{guide.title}</h1>
           {guide.description && (
             <p className="page-description">{guide.description}</p>
@@ -84,7 +98,20 @@ export default function LanguageDetailPage({ params }: { params: Promise<{ slug:
         </div>
 
         <div className="pattern-content">
-          <ReactMarkdown>{guide.content || ''}</ReactMarkdown>
+          {/* Render blocks if available */}
+          {hasBlocks && <BlockRenderer blocks={guide.blocks} />}
+
+          {/* Fall back to markdown content if no blocks */}
+          {!hasBlocks && hasContent && (
+            <ReactMarkdown>{guide.content}</ReactMarkdown>
+          )}
+
+          {/* Show message if no content at all */}
+          {!hasBlocks && !hasContent && (
+            <p style={{ color: '#525252', fontStyle: 'italic' }}>
+              No content available for this guide yet.
+            </p>
+          )}
         </div>
       </Column>
     </Grid>

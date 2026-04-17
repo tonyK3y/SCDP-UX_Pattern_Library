@@ -3,7 +3,9 @@
 import { useState, useEffect, use } from 'react'
 import { Grid, Column, Breadcrumb, BreadcrumbItem, Loading } from '@carbon/react'
 import { ColorPalette } from '@carbon/icons-react'
+import * as CarbonIcons from '@carbon/icons-react'
 import ReactMarkdown from 'react-markdown'
+import BlockRenderer from '@/components/blocks/BlockRenderer'
 
 export default function PatternDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = use(params)
@@ -67,6 +69,18 @@ export default function PatternDetailPage({ params }: { params: Promise<{ slug: 
     )
   }
 
+  // Get the icon component dynamically if icon name is provided
+  const getIcon = (iconName?: string) => {
+    if (!iconName) return <ColorPalette size={48} />
+    const IconComponent = (CarbonIcons as any)[iconName]
+    if (!IconComponent) return <ColorPalette size={48} />
+    return <IconComponent size={48} />
+  }
+
+  // Check if pattern has blocks or legacy content
+  const hasBlocks = pattern.blocks && pattern.blocks.length > 0
+  const hasContent = pattern.content
+
   return (
     <Grid className="page-container content-page">
       <Column lg={16} md={8} sm={4}>
@@ -77,7 +91,7 @@ export default function PatternDetailPage({ params }: { params: Promise<{ slug: 
         </Breadcrumb>
 
         <div className="page-header">
-          <ColorPalette size={48} />
+          {getIcon(pattern.icon)}
           <h1>{pattern.title}</h1>
           {pattern.description && (
             <p className="page-description">{pattern.description}</p>
@@ -85,7 +99,20 @@ export default function PatternDetailPage({ params }: { params: Promise<{ slug: 
         </div>
 
         <div className="pattern-content">
-          <ReactMarkdown>{pattern.content || ''}</ReactMarkdown>
+          {/* Render blocks if available */}
+          {hasBlocks && <BlockRenderer blocks={pattern.blocks} />}
+
+          {/* Fall back to markdown content if no blocks */}
+          {!hasBlocks && hasContent && (
+            <ReactMarkdown>{pattern.content}</ReactMarkdown>
+          )}
+
+          {/* Show message if no content at all */}
+          {!hasBlocks && !hasContent && (
+            <p style={{ color: '#525252', fontStyle: 'italic' }}>
+              No content available for this pattern yet.
+            </p>
+          )}
         </div>
       </Column>
     </Grid>

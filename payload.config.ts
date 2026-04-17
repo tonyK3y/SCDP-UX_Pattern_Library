@@ -7,6 +7,7 @@ import sharp from 'sharp'
 
 // Collections
 import type { CollectionConfig } from 'payload'
+import { contentBlocks } from './payload-blocks'
 
 // Inline collection definitions to avoid import issues
 const Users: CollectionConfig = {
@@ -56,8 +57,40 @@ const Patterns: CollectionConfig = {
       type: 'textarea',
     },
     {
+      name: 'category',
+      type: 'select',
+      defaultValue: 'pattern',
+      options: [
+        { label: 'Pattern', value: 'pattern' },
+        { label: 'Guide', value: 'guide' },
+        { label: 'Getting Started', value: 'getting-started' },
+      ],
+      admin: {
+        description: 'Content category for organization',
+      },
+    },
+    {
+      name: 'icon',
+      type: 'text',
+      required: false,
+      admin: {
+        description: 'Carbon icon name (e.g., "TrashCan", "Edit", "View")',
+      },
+    },
+    {
       name: 'content',
       type: 'richText',
+      admin: {
+        description: 'Legacy markdown content (for backward compatibility)',
+      },
+    },
+    {
+      name: 'blocks',
+      type: 'blocks',
+      blocks: contentBlocks,
+      admin: {
+        description: 'Rich content blocks for enhanced documentation',
+      },
     },
   ],
 }
